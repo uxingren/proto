@@ -1,0 +1,713 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /article/column:
+        get:
+            tags:
+                - Article
+            description: 获取首页/大类文章列表
+            operationId: Article_GetCoumnArticleList
+            parameters:
+                - name: bigCatid
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: limit
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.GetArticleListReply'
+    /article/create:
+        post:
+            tags:
+                - Article
+            description: 发布文章
+            operationId: Article_CreateArticle
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.CreateArticleRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.CreateArticleReply'
+    /article/es/add:
+        post:
+            tags:
+                - Article
+            description: 添加es文章
+            operationId: Article_ArticleESAdd
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.ArticleESAddRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.ArticleESAddReply'
+    /article/es/del-all:
+        post:
+            tags:
+                - Article
+            description: 删除es文章
+            operationId: Article_ArticleESDeleteAll
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.ArticleESDeleteAllRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.ArticleESDeleteAllReply'
+    /article/es/delete:
+        post:
+            tags:
+                - Article
+            description: 删除es文章
+            operationId: Article_ArticleESDelete
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.ArticleESDeleteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.ArticleESDeleteReply'
+    /article/info:
+        get:
+            tags:
+                - Article
+            description: 获取文章列表
+            operationId: Article_GetArticleInfo
+            parameters:
+                - name: uuid
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.GetArticleInfoReply'
+    /article/list:
+        get:
+            tags:
+                - Article
+            description: 获取文章列表
+            operationId: Article_GetArticleList
+            parameters:
+                - name: offset
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: limit
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: keyword
+                  in: query
+                  schema:
+                    type: string
+                - name: bigCatid
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: catid
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: userid
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: status
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.GetArticleListReply'
+    /article/post-num/today:
+        get:
+            tags:
+                - Article
+            description: 获取首页/大类文章列表
+            operationId: Article_GetUserTodayPostNum
+            parameters:
+                - name: userid
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.UserTodayPostNumReply'
+    /category/all:
+        get:
+            tags:
+                - Category
+            operationId: Category_GetCategoryAll
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.GetCateAllReply'
+    /it/{name}:
+        get:
+            tags:
+                - Greeter
+            description: Sends a greeting
+            operationId: Greeter_SayHello
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.HelloReply'
+    /oss/upload:
+        post:
+            tags:
+                - OSS
+            operationId: OSS_OssUpload
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.OssUploadRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.OssUploadReply'
+    /sms/send:
+        post:
+            tags:
+                - SMS
+            operationId: SMS_SendSmsCode
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.SmsCodeSendRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.SmsCodeSendReply'
+    /user/add:
+        post:
+            tags:
+                - User
+            description: 注册用户
+            operationId: User_AddUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.AddUserRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.AddUserReply'
+    /user/info/get:
+        get:
+            tags:
+                - User
+            description: 获取用户信息
+            operationId: User_GetUserInfo
+            parameters:
+                - name: userId
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: uuid
+                  in: query
+                  schema:
+                    type: string
+                - name: userName
+                  in: query
+                  schema:
+                    type: string
+                - name: mobile
+                  in: query
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.GetUserInfoReply'
+    /user/info/set:
+        post:
+            tags:
+                - User
+            description: 设置用户信息
+            operationId: User_SetUserInfo
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.SetUserInfoRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.SetUserInfoReply'
+    /user/mobile/bind:
+        post:
+            tags:
+                - User
+            description: 绑定手机号
+            operationId: User_BindMobile
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/it.v1.BindMobileRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.BindMobileReply'
+    /user/top:
+        get:
+            tags:
+                - User
+            description: 获取用户信息
+            operationId: User_GetTopUser
+            parameters:
+                - name: offset
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+                - name: limit
+                  in: query
+                  schema:
+                    type: integer
+                    format: uint32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/it.v1.GetTopUserReply'
+components:
+    schemas:
+        it.v1.AddUserReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.AddUserRequest:
+            type: object
+            properties:
+                userName:
+                    type: string
+                password:
+                    type: string
+                clientIp:
+                    type: string
+        it.v1.ArticleESAddReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.ArticleESAddRequest:
+            type: object
+            properties:
+                newsid:
+                    type: integer
+                    format: uint32
+        it.v1.ArticleESDeleteAllReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.ArticleESDeleteAllRequest:
+            type: object
+            properties: {}
+        it.v1.ArticleESDeleteReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.ArticleESDeleteRequest:
+            type: object
+            properties:
+                newsid:
+                    type: integer
+                    format: uint32
+        it.v1.BindMobileReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.BindMobileRequest:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: uint32
+                mobile:
+                    type: string
+                smscode:
+                    type: string
+        it.v1.CreateArticleReply:
+            type: object
+            properties:
+                uuid:
+                    type: string
+        it.v1.CreateArticleRequest:
+            type: object
+            properties:
+                userid:
+                    type: integer
+                    format: uint32
+                catid:
+                    type: integer
+                    format: uint32
+                title:
+                    type: string
+                content:
+                    type: string
+                keyword:
+                    type: string
+                author:
+                    type: string
+        it.v1.GetArticleInfoReply:
+            type: object
+            properties:
+                uuid:
+                    type: string
+                userid:
+                    type: integer
+                    format: uint32
+                parentid:
+                    type: integer
+                    format: uint32
+                catid:
+                    type: integer
+                    format: uint32
+                title:
+                    type: string
+                author:
+                    type: string
+                status:
+                    type: integer
+                    format: uint32
+                ctime:
+                    type: integer
+                    format: int64
+                content:
+                    type: string
+                avatar:
+                    type: string
+                keyword:
+                    type: array
+                    items:
+                        type: string
+                bigCatname:
+                    type: string
+                catname:
+                    type: string
+                updateTime:
+                    type: string
+                columnUrl:
+                    type: string
+                url:
+                    type: string
+                bigCaturl:
+                    type: string
+                caturl:
+                    type: string
+        it.v1.GetArticleListReply:
+            type: object
+            properties:
+                total:
+                    type: integer
+                    format: uint32
+                list:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/it.v1.GetArticleListReply_Article'
+        it.v1.GetArticleListReply_Article:
+            type: object
+            properties:
+                uuid:
+                    type: string
+                title:
+                    type: string
+                url:
+                    type: string
+                parentid:
+                    type: integer
+                    format: uint32
+                bigCatname:
+                    type: string
+                catid:
+                    type: integer
+                    format: uint32
+                catname:
+                    type: string
+                cover:
+                    type: string
+                author:
+                    type: string
+                columnUrl:
+                    type: string
+                caturl:
+                    type: string
+                bigCaturl:
+                    type: string
+                prettifyTime:
+                    type: string
+                updateTime:
+                    type: string
+                ctime:
+                    type: integer
+                    format: int64
+        it.v1.GetCateAllReply:
+            type: object
+            properties:
+                items:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/it.v1.GetCateAllReply_Nested'
+        it.v1.GetCateAllReply_Child:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                name:
+                    type: string
+                uuid:
+                    type: string
+                pid:
+                    type: integer
+                    format: uint32
+        it.v1.GetCateAllReply_Nested:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    format: uint32
+                name:
+                    type: string
+                uuid:
+                    type: string
+                child:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/it.v1.GetCateAllReply_Child'
+        it.v1.GetTopUserReply:
+            type: object
+            properties:
+                item:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/it.v1.GetTopUserReply_Info'
+        it.v1.GetTopUserReply_Info:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: uint32
+                nickName:
+                    type: string
+                avatar:
+                    type: string
+                columnUrl:
+                    type: string
+                postTime:
+                    type: integer
+                    format: int64
+        it.v1.GetUserInfoReply:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: uint32
+                uuid:
+                    type: string
+                userName:
+                    type: string
+                mobile:
+                    type: string
+                nickName:
+                    type: string
+                sign:
+                    type: string
+                avatar:
+                    type: string
+                password:
+                    type: string
+                author:
+                    type: string
+                columnUrl:
+                    type: string
+                smscodeMobile:
+                    type: string
+                smscode:
+                    type: string
+                smscodeExpTime:
+                    type: integer
+                    format: int64
+                smscodeTodayTime:
+                    type: integer
+                    format: uint32
+        it.v1.HelloReply:
+            type: object
+            properties:
+                message:
+                    type: string
+            description: The response message containing the greetings
+        it.v1.OssUploadReply:
+            type: object
+            properties:
+                url:
+                    type: string
+                path:
+                    type: string
+        it.v1.OssUploadRequest:
+            type: object
+            properties:
+                path:
+                    type: string
+        it.v1.SetUserInfoReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.SetUserInfoRequest:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: uint32
+                nickName:
+                    type: string
+                author:
+                    type: string
+                sign:
+                    type: string
+                avatar:
+                    type: string
+                password:
+                    type: string
+                loginTime:
+                    type: integer
+                    format: int64
+                loginIp:
+                    type: string
+                postTime:
+                    type: integer
+                    format: int64
+                mobile:
+                    type: string
+        it.v1.SmsCodeSendReply:
+            type: object
+            properties:
+                status:
+                    type: boolean
+        it.v1.SmsCodeSendRequest:
+            type: object
+            properties:
+                userId:
+                    type: integer
+                    format: uint32
+                mobile:
+                    type: string
+        it.v1.UserTodayPostNumReply:
+            type: object
+            properties:
+                num:
+                    type: integer
+                    format: uint32
+tags:
+    - name: Article
+    - name: Category
+    - name: Greeter
+      description: The greeting service definition.
+    - name: OSS
+    - name: SMS
+    - name: User

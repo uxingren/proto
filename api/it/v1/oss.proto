@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package it.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "it/api/it/v1;v1";
+
+service OSS {
+  rpc OssUpload (OssUploadRequest) returns (OssUploadReply) {
+    option (google.api.http) = {
+      post: "/oss/upload",
+      body: "*",
+    };
+  }
+}
+
+message OssUploadRequest {
+  string path = 1;
+}
+
+message OssUploadReply {
+  string url = 1;
+  string path = 2;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package it.v1;
+
+option go_package = "it/api/it/v1;v1";
+
+enum ErrorReason {
+  GREETER_UNSPECIFIED = 0;
+  UserNotFound = 1;
+  ArticleNotFound = 2;
+  UserIdIsEmpty = 3;
+  RegisterError = 4;
+  IsBindMobile = 5;
+}

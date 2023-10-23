@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package it.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "it/api/it/v1;v1";
+
+service User {
+
+  // 获取用户信息
+  rpc GetUserInfo (GetUserInfoRequest) returns (GetUserInfoReply) {
+    option (google.api.http) = {
+      get: "/user/info/get",
+    };
+  }
+
+  // 获取用户信息
+  rpc GetTopUser (GetTopUserRequest) returns (GetTopUserReply) {
+    option (google.api.http) = {
+      get: "/user/top",
+    };
+  }
+
+  // 设置用户信息
+  rpc SetUserInfo (SetUserInfoRequest) returns (SetUserInfoReply) {
+    option (google.api.http) = {
+      post: "/user/info/set",
+      body: "*",
+    };
+  }
+
+  // 绑定手机号
+  rpc BindMobile (BindMobileRequest) returns (BindMobileReply) {
+    option (google.api.http) = {
+      post: "/user/mobile/bind",
+      body: "*",
+    };
+  }
+
+  // 注册用户
+  rpc AddUser (AddUserRequest) returns (AddUserReply) {
+    option (google.api.http) = {
+      post: "/user/add",
+      body: "*",
+    };
+  }
+
+}
+
+message GetUserInfoRequest {
+  uint32 user_id = 1;
+  string uuid = 2;
+  string user_name = 3;
+  string mobile = 4;
+}
+message GetUserInfoReply {
+  uint32 user_id = 1;
+  string uuid = 2;
+  string user_name = 3;
+  string mobile = 4;
+  string nick_name = 5;
+  string sign = 6;
+  string avatar = 7;
+  string password = 8;
+  string author = 9;
+  string column_url = 10;
+
+  string smscode_mobile = 11;
+  string smscode = 12;
+  int64 smscode_exp_time = 13;
+  uint32 smscode_today_time = 14;
+}
+
+message GetTopUserRequest {
+  uint32 offset = 1;
+  uint32 limit = 2;
+}
+message GetTopUserReply {
+  message Info {
+    uint32 user_id = 1;
+    string nick_name = 2;
+    string avatar = 3;
+    string column_url = 4;
+    int64 post_time = 5;
+  }
+  repeated Info item = 1;
+}
+
+message SetUserInfoRequest {
+  uint32 user_id = 1;
+  string nick_name = 2;
+  string author = 3;
+  string sign = 4;
+  string avatar = 5;
+  string password = 6;
+  int64 login_time = 7;
+  string login_ip = 8;
+  int64 post_time = 9;
+  string mobile = 10;
+}
+message SetUserInfoReply {
+  bool status = 1;
+}
+
+message BindMobileRequest {
+  uint32 user_id = 1;
+  string mobile = 2;
+  string smscode = 3;
+}
+message BindMobileReply {
+  bool status = 1;
+}
+
+message AddUserRequest {
+  string user_name = 1;
+  string password = 2;
+  string client_ip = 3;
+}
+message AddUserReply {
+  bool status = 1;
+}

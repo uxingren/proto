@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package it.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "it/api/it/v1;v1";
+
+service SMS {
+  rpc SendSmsCode (SmsCodeSendRequest) returns (SmsCodeSendReply) {
+    option (google.api.http) = {
+      post: "/sms/send",
+      body: "*",
+    };
+  }
+}
+
+message SmsCodeSendRequest {
+  uint32 user_id = 1;
+  string mobile = 2;
+}
+
+message SmsCodeSendReply {
+  bool status = 1;
+}

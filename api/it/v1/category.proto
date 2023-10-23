@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package it.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "it/api/it/v1;v1";
+
+service Category {
+  rpc GetCategoryAll (GetCateAllRequest) returns (GetCateAllReply) {
+    option (google.api.http) = {
+      get: "/category/all"
+    };
+  }
+}
+
+message GetCateAllRequest {
+}
+message GetCateAllReply {
+  message Child {
+    uint32 id = 1;
+    string name = 2;
+    string uuid = 3;
+    uint32 pid = 4;
+  }
+  message Nested {
+    uint32 id = 1;
+    string name = 2;
+    string uuid = 3;
+    repeated Child child = 4;
+  }
+  repeated Nested items = 1;
+}

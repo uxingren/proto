@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package it.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "it/api/it/v1;v1";
+
+service Article {
+
+  // 获取文章列表
+  rpc GetArticleInfo (GetArticleInfoRequest) returns (GetArticleInfoReply) {
+    option (google.api.http) = {
+      get: "/article/info",
+    };
+  }
+
+  // 获取文章列表
+  rpc GetArticleList (GetArticleListRequest) returns (GetArticleListReply) {
+    option (google.api.http) = {
+      get: "/article/list",
+    };
+  }
+
+  // 获取首页/大类文章列表
+  rpc GetCoumnArticleList (GetColumnArticleRequest) returns (GetArticleListReply) {
+    option (google.api.http) = {
+      get: "/article/column",
+    };
+  }
+
+  // 获取首页/大类文章列表
+  rpc GetUserTodayPostNum (UserTodayPostNumRequest) returns (UserTodayPostNumReply) {
+    option (google.api.http) = {
+      get: "/article/post-num/today",
+    };
+  }
+
+  // 发布文章
+  rpc CreateArticle (CreateArticleRequest) returns (CreateArticleReply) {
+    option (google.api.http) = {
+      post: "/article/create",
+      body: "*",
+    };
+  }
+
+  // 添加es文章
+  rpc ArticleESAdd (ArticleESAddRequest) returns (ArticleESAddReply) {
+    option (google.api.http) = {
+      post: "/article/es/add",
+      body: "*",
+    };
+  }
+
+  // 删除es文章
+  rpc ArticleESDelete (ArticleESDeleteRequest) returns (ArticleESDeleteReply) {
+    option (google.api.http) = {
+      post: "/article/es/delete",
+      body: "*",
+    };
+  }
+  // 删除es文章
+  rpc ArticleESDeleteAll (ArticleESDeleteAllRequest) returns (ArticleESDeleteAllReply) {
+    option (google.api.http) = {
+      post: "/article/es/del-all",
+      body: "*",
+    };
+  }
+
+}
+
+message GetArticleInfoRequest {
+  string uuid = 1;
+}
+message GetArticleInfoReply {
+  string uuid = 1;
+  uint32 userid = 2;
+  uint32 parentid = 3;
+  uint32 catid = 4;
+  string title = 5;
+  string author = 6;
+  uint32 status = 7;
+  int64 ctime = 8;
+
+  string content = 9;
+  string avatar = 10;
+  repeated string keyword = 11;
+  string big_catname = 12;
+  string catname = 13;
+  string update_time = 14;
+  string column_url = 15;
+  string url = 16;
+  string big_caturl = 17;
+  string caturl = 18;
+}
+
+message GetArticleListRequest {
+  uint32 offset = 1;
+  uint32 limit = 2;
+  string keyword = 3;
+  uint32 big_catid = 4;
+  uint32 catid = 5;
+  uint32 userid = 6;
+  uint32 status = 7;
+}
+message GetArticleListReply {
+  message Article {
+    string uuid = 1;
+    string title = 2;
+    string url = 3;
+    uint32 parentid = 4;
+    string big_catname = 5;
+    uint32 catid = 6;
+    string catname = 7;
+    string cover = 8;
+    string author = 9;
+    string column_url = 10;
+    string caturl = 11;
+    string big_caturl = 12;
+    string prettify_time = 13;
+    string update_time = 14;
+    int64 ctime = 15;
+  }
+  uint32 total = 1;
+  repeated Article list = 2;
+}
+
+message GetColumnArticleRequest {
+  uint32 big_catid = 1;
+  uint32 limit = 2;
+}
+
+message UserTodayPostNumRequest {
+  uint32 userid = 1;
+}
+message UserTodayPostNumReply {
+  uint32 num = 1;
+}
+
+message CreateArticleRequest {
+  uint32 userid = 1;
+  uint32 catid = 2;
+  string title = 3;
+  string content = 4;
+  string keyword = 5;
+  string author = 6;
+}
+message CreateArticleReply {
+  string uuid = 1;
+}
+
+message ArticleESAddRequest {
+  uint32 newsid = 1;
+}
+message ArticleESAddReply {
+  bool status = 1;
+}
+message ArticleESDeleteRequest {
+  uint32 newsid = 1;
+}
+message ArticleESDeleteReply {
+  bool status = 1;
+}
+message ArticleESDeleteAllRequest {
+}
+
+message ArticleESDeleteAllReply {
+  bool status = 1;
+}
+
